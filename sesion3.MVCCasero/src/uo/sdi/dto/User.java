@@ -1,5 +1,7 @@
 package uo.sdi.dto;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import uo.sdi.dto.types.UserStatus;
 
 /**
@@ -53,12 +55,21 @@ public class User {
 	}
 
 	public User setPassword(String password) {
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 		return this;
 	}
 
 	public Boolean getIsAdmin() {
 		return isAdmin;
+	}
+	
+	/**
+	 * Comprueba que la contraseña pertenece al usuario
+	 * @param toCheck contraseña a comprobar
+	 * @return si la contraseña es correcta para el usuario
+	 */
+	public boolean checkPassword(String toCheck){
+		return BCrypt.checkpw(toCheck, this.password);
 	}
 
 	@Override

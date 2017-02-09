@@ -40,18 +40,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		String rolAntes, rolDespues;
 
 		try {
-			accionNavegadorUsuario = request.getServletPath().replace("/", ""); // Obtener
-			// el
-			// string
-			// que
-			// hay
-			// a
-			// la
-			// derecha
-			// de
-			// la
-			// última
-			// /
+			accionNavegadorUsuario = request.getServletPath().replace("/", ""); 
+			// Obtener el string que hay a la derecha de la última /
 
 			rolAntes = obtenerRolDeSesion(request);
 

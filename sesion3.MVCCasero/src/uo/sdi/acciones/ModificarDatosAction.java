@@ -56,7 +56,7 @@ public class ModificarDatosAction implements Accion {
 
 	private boolean canChangePassword(String newPass, String newPassAgain,
 			String oldPass, User userClone) {
-		return newPass.equals(newPassAgain) && oldPass.equals(userClone.getPassword());
+		return newPass.equals(newPassAgain) && userClone.checkPassword(oldPass);
 	}
 
 	@Override
