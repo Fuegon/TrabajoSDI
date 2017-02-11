@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import uo.sdi.business.Services;
 import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
@@ -19,6 +21,7 @@ public class ValidarseAction implements Accion {
 		String resultado="EXITO";
 		String nombreUsuario=request.getParameter("nombreUsuario");
 		String password = request.getParameter("password");
+
 		HttpSession session=request.getSession();
 		if (session.getAttribute("user")==null) {
 			UserService userService = Services.getUserService();
@@ -61,7 +64,7 @@ public class ValidarseAction implements Accion {
 				session.invalidate();
 				resultado="FRACASO";
 			}
-		return resultado;
+		return resultado; 
 	}
 	
 	@Override
