@@ -7,29 +7,50 @@
 <title>TaskManager - Página principal del usuario</title>
 </head>
 <body>
-	<table border="1" align="center">
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-			</tr>
-		<c:forEach var="entry" items="${listaTasks}" varStatus="i">
-			<tr id="item_${i.index}">
-				<td><a href="${entry.id}">${entry.id}</a></td>
-				<td>${entry.title}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<table border="1" align="center">
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-			</tr>
-		<c:forEach var="entry" items="${listaCategory}" varStatus="i">
-			<tr id="item_${i.index}">
-				<td><a href="${entry.id}">${entry.id}</a></td>
-				<td>${entry.name}</td>
-			</tr>
-		</c:forEach>
+	<a name ="inbox_link" href ="inbox">Inbox</a>
+	<a name ="hoy_link" href ="hoy">Hoy</a>
+	<a name ="semana_link" href ="semana">Semana</a>
+	<br/>
+	<form action="newTarea" method="POST">
+		<label>Añadir tarea: <input type="text"
+						name="newTarea" size="15"></label> 
+		<input type="submit" value="Añadir">
+	</form>
+	<form action="newCategory" method="POST">
+		<label>Añadir categoria: <input type="text"
+						name="newCategory" size="15"></label> 
+		<input type="submit" value="Añadir">
+	</form>
+	<br/>
+	<table>
+	<tr>
+		<td><table border="1" align="center">
+		<tr><th colspan="2">${titulo}</th></tr>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+				</tr>
+			<c:forEach var="entry" items="${listaTasks}" varStatus="i">
+				<tr id="item_${i.index}">
+					<td><a href="${entry.id}">${entry.id}</a></td>
+					<td>${entry.title}</td>
+				</tr>
+			</c:forEach>
+		</table></td>
+		<td><table border="1" align="center">
+				<tr><th colspan="2">Categorias</th></tr>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+				</tr>
+			<c:forEach var="entry" items="${listaCategory}" varStatus="i">
+				<tr id="item_${i.index}">
+					<td><a href="${entry.id}">${entry.id}</a></td>
+					<td>${entry.name}</td>
+				</tr>
+			</c:forEach>
+		</table></td>
+	</tr>
 	</table>
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 

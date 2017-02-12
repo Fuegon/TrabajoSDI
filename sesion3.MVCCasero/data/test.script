@@ -51,23 +51,11 @@ GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.CHARACTER_DATA TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
 GRANT DBA TO SA
 SET SCHEMA PUBLIC
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO TUSERS VALUES(1,'mary@maily.com',FALSE,'mary','$2a$10$vyaqZkIUDGFy/93WwdO3Yu39xpsz.N5JPqLAEDCrtE8DVGo8t9ejq','ENABLED')
 INSERT INTO TUSERS VALUES(2,'john@mail.com',FALSE,'john','$2a$10$1Y25RCa7GaJXBI6Tu/rt/OAkvE/AMMU5rTLvzN1e2uhvaLIlbodbq','ENABLED')
 INSERT INTO TUSERS VALUES(3,'ian@mail.com',FALSE,'ian','$2a$10$qcuUbVNGqEsOwtqt4NAr6eR2CNBQ4MEzv9lVRN7RH9sy5u14VabdK','DISABLED')
 INSERT INTO TUSERS VALUES(4,'me@system.gtd',TRUE,'admin','$2a$10$a7/ouX9lV6s43LtaqzHBY.1Lf917HDDyBbMHgaDMtc8E9CIE6a2zO','ENABLED')
 INSERT INTO TUSERS VALUES(5,'me@me.com',FALSE,'ramon','$2a$10$.UcekhSiGIXcMehR5TjC..Fx9O8sBDJ6Pag1/nKWBIuxuTJsYaNam','ENABLED')
-=======
-INSERT INTO TUSERS VALUES(1,'mary@maily.com',FALSE,'mary','$2a$10$E1ra7XWfU8yAv4RvzPqA7eEOUOZN256HjP55G/OcIt53l1aR1mFeu','ENABLED')
-INSERT INTO TUSERS VALUES(2,'john@mail.com',FALSE,'john','$2a$10$B8VhpPkN6r/ERl.eI.Fj6OFDIaNfWqHJr6RHPU7V4qNnXo7hFxPgm','ENABLED')
-INSERT INTO TUSERS VALUES(4,'me@system.gtd',TRUE,'admin','$2a$10$SHIp8aPXkrzFnxN/CDkIG.im6NixiKw6WNTCK0zRF6zVKmIwp7xfq','ENABLED')
->>>>>>> b8cb0365412467ceaa18c92db9581d47402917d6
-=======
-INSERT INTO TUSERS VALUES(1,'mary@maily.com',FALSE,'mary','$2a$10$E1ra7XWfU8yAv4RvzPqA7eEOUOZN256HjP55G/OcIt53l1aR1mFeu','ENABLED')
-INSERT INTO TUSERS VALUES(2,'john@mail.com',FALSE,'john','$2a$10$B8VhpPkN6r/ERl.eI.Fj6OFDIaNfWqHJr6RHPU7V4qNnXo7hFxPgm','ENABLED')
-INSERT INTO TUSERS VALUES(4,'me@system.gtd',TRUE,'admin','$2a$10$SHIp8aPXkrzFnxN/CDkIG.im6NixiKw6WNTCK0zRF6zVKmIwp7xfq','ENABLED')
->>>>>>> b8cb0365412467ceaa18c92db9581d47402917d6
 INSERT INTO TTASKS VALUES(1,'Aenean vehicula mattis dui. Praesent vel risus sed tellus aliquet aliquam. Integer bibendum eros lorem, ut feugiat justo luctus eu. Praesent pharetra tincidunt scelerisque. ','2017-02-02','2017-02-11','2017-02-11','Task 0 for category Personal projects',3,1)
 INSERT INTO TTASKS VALUES(2,NULL,'2017-02-02',NULL,'2017-02-11','Task 6 for category @Office',2,1)
 INSERT INTO TTASKS VALUES(3,NULL,'2017-02-02',NULL,NULL,'Task 9 for category Waiting event',4,1)

@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class AccederTareasAction implements Accion {
+public class ListarTareasInboxAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -20,12 +21,19 @@ public class AccederTareasAction implements Accion {
 		
 		String resultado="EXITO";
 		
-		List<uo.sdi.dto.Category> listaCategory;
-		List<Task> listaTask;
+		List<Task> listaTasks;
 		User user;
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
+			listaTasks = taskService.findInboxTasksByUserId(user.getId());
+			request.setAttribute("listaTasks", listaTasks);
+			request.setAttribute("titulo", "Tareas del inbox");
+			request.setAttribute("categoria", null);
+			Log.debug("Obtenida lista de tasks de hoy conteniendo [%d] tasks", 
+					listaTasks.size());
+			
+			List<Category> listaCategory;
 			listaCategory = taskService.findCategoriesByUserId(user.getId());
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
@@ -33,19 +41,10 @@ public class AccederTareasAction implements Accion {
 			Log.debug("Obtenida lista de categorias del usuario son "
 					+ " [%d] categorias", 
 					listaCategory.size());
-			
-			//Se guardan las tareas
-			listaTask = taskService.findUnfinishedTasksByUserId(user.getId());
-			request.setAttribute("listaTasks", listaTask);
-			Log.debug("Obtenida lista de tasks del usuario  no terminadas son "
-					+ " [%d] tasks", 
-					listaTask.size());
-			
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido obteniendo lista de categorias"
-					+ "o de tareas de %s: %s",
-					user,b.getMessage());
+			Log.debug("Algo ha ocurrido obteniendo lista de tasks de hoy: %s",
+					b.getMessage());
 			resultado="FRACASO";
 		}
 		return resultado;

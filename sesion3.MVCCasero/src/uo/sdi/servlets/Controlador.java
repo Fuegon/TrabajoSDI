@@ -136,17 +136,14 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
-<<<<<<< HEAD
-<<<<<<< HEAD
 		mapaRegistrado.put("tareas", new AccederTareasAction());
 		mapaRegistrado.put("mostrarLista", new AccederTareasAction());
-	
-=======
-		mapaRegistrado.put("verhoy", new ListarTareasHoyAction());
->>>>>>> b8cb0365412467ceaa18c92db9581d47402917d6
-=======
-		mapaRegistrado.put("verhoy", new ListarTareasHoyAction());
->>>>>>> b8cb0365412467ceaa18c92db9581d47402917d6
+		mapaRegistrado.put("hoy", new ListarTareasHoyAction());
+		mapaRegistrado.put("inbox", new ListarTareasInboxAction());
+		mapaRegistrado.put("semana", new ListarTareasSemanaAction());
+		mapaRegistrado.put("newTarea", new CrearTareaAction());
+		mapaRegistrado.put("newCategory", new CrearCategoriaAction());
+
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
 		Map<String, Accion> mapaAdmin = new HashMap<String, Accion>();
@@ -214,11 +211,36 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
 		opcionResultadoYJSP.put("modificarDatos", resultadoYJSP);
 		
-		// Modificar datos
+		// Mostrar panel de tareas
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("tareas", resultadoYJSP);
 		
+		// Mostrar de tareas hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("hoy", resultadoYJSP);
+		
+		// Mostrar de tareas hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("semana", resultadoYJSP);
+		
+		// Mostrar de tareas hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("inbox", resultadoYJSP);
+		
+		// Crear tarea hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("newTarea", resultadoYJSP);
+		
+		// Crear tarea hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("newCategory", resultadoYJSP);
+
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
 		// Mapa de navegación del ADMINISTRADOR
