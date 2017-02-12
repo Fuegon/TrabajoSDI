@@ -7,6 +7,7 @@ import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.admin.command.DeepDeleteUserCommand;
 import uo.sdi.business.impl.admin.command.DisableUserCommand;
 import uo.sdi.business.impl.admin.command.EnableUserCommand;
+import uo.sdi.business.impl.admin.command.FindAllUsersCommand;
 import uo.sdi.business.impl.command.Command;
 import uo.sdi.business.impl.command.CommandExecutor;
 import uo.sdi.dto.User;
@@ -30,9 +31,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findAllUsers() throws BusinessException {
+		return new CommandExecutor<List<User>>().execute(new FindAllUsersCommand());
 	}
 
 	@Override

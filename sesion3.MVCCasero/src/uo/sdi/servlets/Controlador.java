@@ -40,7 +40,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		String rolAntes, rolDespues;
 
 		try {
-			accionNavegadorUsuario = request.getServletPath().replace("/", ""); 
+			accionNavegadorUsuario = request.getServletPath().replace("/", "");
 			// Obtener el string que hay a la derecha de la última /
 
 			rolAntes = obtenerRolDeSesion(request);
@@ -134,11 +134,15 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		Map<String, Accion> mapaRegistrado = new HashMap<String, Accion>();
 		mapaRegistrado.put("modificarDatos", new ModificarDatosAction());
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
-		mapaRegistrado.put("ver/hoy", new ListarTareasHoyAction());
+		mapaRegistrado.put("verhoy", new ListarTareasHoyAction());
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
 		Map<String, Accion> mapaAdmin = new HashMap<String, Accion>();
 		mapaAdmin.put("modificarDatos", new ModificarDatosAction());
+		mapaAdmin.put("adminUsers", new AdministrarUsuariosAction());
+		mapaAdmin.put("enableUser", new HabilitarUsuarioAction());
+		mapaAdmin.put("disableUser", new DeshabilitarUsuarioAction());
+		mapaAdmin.put("deleteUser", new BorrarUsuarioAction());
 		mapaAdmin.put("cerrarSesion", new CerrarSesionAction());
 		mapaDeAcciones.put("ADMIN", mapaAdmin);
 	}
@@ -186,7 +190,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
-		// Mapa de navegación del administrador
+		// Mapa de navegación del ADMINISTRADOR
 		// Validarse
 		resultadoYJSP.put("EXITO", "/principalUsuario.jsp");
 		opcionResultadoYJSP.put("validarse", resultadoYJSP);
@@ -196,6 +200,30 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/principalUsuario.jsp");
 		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
 		opcionResultadoYJSP.put("modificarDatos", resultadoYJSP);
+
+		// Listar usuarios
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listadoUsuarios.jsp");
+		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
+		opcionResultadoYJSP.put("adminUsers", resultadoYJSP);
+
+		// Hablitar usuarios
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/adminUsers");
+		resultadoYJSP.put("FRACASO", "/adminUsers");
+		opcionResultadoYJSP.put("enableUser", resultadoYJSP);
+
+		// Deshablitar usuarios
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/adminUsers");
+		resultadoYJSP.put("FRACASO", "/adminUsers");
+		opcionResultadoYJSP.put("disableUser", resultadoYJSP);
+
+		// Borrar usuarios
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/adminUsers");
+		resultadoYJSP.put("FRACASO", "/adminUsers");
+		opcionResultadoYJSP.put("deleteUser", resultadoYJSP);
 
 		mapaDeNavegacion.put("ADMIN", opcionResultadoYJSP);
 	}
