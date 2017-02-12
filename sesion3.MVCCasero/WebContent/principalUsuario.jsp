@@ -45,6 +45,8 @@
 			<td id="status"><jsp:getProperty property="status" name="user" /></td>
 		</tr>
 	</table>
+	<br/>
+	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
 	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
