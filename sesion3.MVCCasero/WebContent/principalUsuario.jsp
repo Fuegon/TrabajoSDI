@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="comprobarNavegacion.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -24,12 +25,12 @@
 			<td>Datos:</td>
 			<td id="datos"><form action="modificarDatos" method="POST">
 					<label>Email: <input type="text" name="email" size="15"
-						value="<jsp:getProperty property="email" name="user"/>"></label>
-						<label>Nueva contraseña: <input type="password" name="newPass" size="15"></label>
-						<label>Repita la contraseña: <input type="password" name="newPassAgain" size="15"></label>
-						<label>Antigua contraseña: <input type="password" name="oldPass" size="15"></label> 
-						 
-						<input type="submit" value="Modificar">
+						value="<jsp:getProperty property="email" name="user"/>"></label> <label>Nueva
+						contraseña: <input type="password" name="newPass" size="15">
+					</label> <label>Repita la contraseña: <input type="password"
+						name="newPassAgain" size="15"></label> <label>Antigua
+						contraseña: <input type="password" name="oldPass" size="15">
+					</label> <input type="submit" value="Modificar">
 				</form></td>
 		</tr>
 		<tr>
@@ -44,6 +45,12 @@
 			<td>Estado:</td>
 			<td id="status"><jsp:getProperty property="status" name="user" /></td>
 		</tr>
+		<c:if test="${user.isAdmin}">
+			<tr>
+				<td>Opciones administrador:</td>
+				<td id="adminUsers"><a href="adminUsers">Administrar usuarios</a></td>
+			</tr>
+		</c:if>
 	</table>
 	<br/>
 	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
