@@ -9,6 +9,7 @@ import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Task;
+import uo.sdi.dto.User;
 import alb.util.log.Log;
 
 public class ModificarTareaAction implements Accion {
@@ -18,7 +19,8 @@ public class ModificarTareaAction implements Accion {
 			HttpServletResponse response) {
 		
 		String resultado="EXITO";
-		
+		User user;
+		user = (User) request.getSession().getAttribute("user");
 		
 		//Task tareaAntigua = (Task) request.getAttribute("tarea2");
 
@@ -35,6 +37,7 @@ public class ModificarTareaAction implements Accion {
 			TaskService taskService = Services.getTaskService();
 			tarea.setId(Long.valueOf(id));
 			tarea.setTitle(title);
+			tarea.setUserId(user.getId());
 			if(!comment.equals("null")){tarea.setComments(comment);}
 			if(!planned.equals("null")){tarea.setPlanned(Date.valueOf(planned));}
 			if(categoryIdTrue!= null){tarea.setCategoryId(categoryIdTrue);}

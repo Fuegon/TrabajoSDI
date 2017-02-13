@@ -24,9 +24,8 @@
 	<form action="modificarTarea2" method="POST">
 	<table>
 		<tr><td>
-			<label>ID: <input type="text" name="id" size="15" 
+			 <input type="hidden" name="id" size="15" 
 						value="<jsp:getProperty property="id" name="tarea" />">
-			</label> 
 		</td></tr>
 		<tr><td>
 			<label>Title: <input type="text" name="title" size="15"
