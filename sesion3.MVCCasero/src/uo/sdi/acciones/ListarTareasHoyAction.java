@@ -26,7 +26,9 @@ public class ListarTareasHoyAction implements Accion {
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaTasks = taskService.findTodayTasksByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaTasks = taskService.findTodayTasksByUserId(user.getId());
+			}
 			request.setAttribute("listaTasks", listaTasks);
 			request.setAttribute("titulo", "Tareas de hoy");
 			request.setAttribute("categoria", null);
@@ -34,7 +36,9 @@ public class ListarTareasHoyAction implements Accion {
 					listaTasks.size());
 			
 			List<Category> listaCategory;
-			listaCategory = taskService.findCategoriesByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaCategory = taskService.findCategoriesByUserId(user.getId());
+			}
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
 			request.setAttribute("listaCategory", listaCategory);

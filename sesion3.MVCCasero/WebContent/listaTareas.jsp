@@ -34,6 +34,8 @@
 				<tr id="item_${i.index}">
 					<td><a href="${entry.id}">${entry.id}</a></td>
 					<td>${entry.title}</td>
+					<td><a href="modificarTarea?Id=${entry.id}">Modificar</a></td>
+					
 				</tr>
 			</c:forEach>
 		</table></td>

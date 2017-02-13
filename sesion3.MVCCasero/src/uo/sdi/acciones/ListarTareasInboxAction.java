@@ -26,7 +26,9 @@ public class ListarTareasInboxAction implements Accion {
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaTasks = taskService.findInboxTasksByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaTasks = taskService.findInboxTasksByUserId(user.getId());
+			}
 			request.setAttribute("listaTasks", listaTasks);
 			request.setAttribute("titulo", "Tareas del inbox");
 			request.setAttribute("categoria", null);
@@ -34,7 +36,10 @@ public class ListarTareasInboxAction implements Accion {
 					listaTasks.size());
 			
 			List<Category> listaCategory;
-			listaCategory = taskService.findCategoriesByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+
+				listaCategory = taskService.findCategoriesByUserId(user.getId());
+			}
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
 			request.setAttribute("listaCategory", listaCategory);

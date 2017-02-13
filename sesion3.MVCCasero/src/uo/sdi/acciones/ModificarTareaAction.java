@@ -1,0 +1,64 @@
+package uo.sdi.acciones;
+
+import java.sql.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import uo.sdi.business.Services;
+import uo.sdi.business.TaskService;
+import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Task;
+import alb.util.log.Log;
+
+public class ModificarTareaAction implements Accion {
+	
+	@Override
+	public String execute(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		String resultado="EXITO";
+		
+		
+		//Task tareaAntigua = (Task) request.getAttribute("tarea2");
+
+		String id = request.getParameter("id");
+		String title = request.getParameter("title");
+		String comment =  request.getParameter("comment");
+		String planned =  request.getParameter("planned");
+		String categoryId = request.getParameter("categoryId");
+		
+		Long categoryIdTrue = null;
+		if(!categoryId.equals("null")){categoryIdTrue = Long.valueOf(categoryId);}
+		Task tarea = new Task();
+		try {
+			TaskService taskService = Services.getTaskService();
+			tarea.setId(Long.valueOf(id));
+			tarea.setTitle(title);
+			if(!comment.equals("null")){tarea.setComments(comment);}
+			if(!planned.equals("null")){tarea.setPlanned(Date.valueOf(planned));}
+			if(categoryIdTrue!= null){tarea.setCategoryId(categoryIdTrue);}
+			
+			synchronized(request.getServletContext())  {
+				taskService.updateTask(tarea);
+			}
+			
+			Log.debug("Modificada la tarea [%d] ",tarea.getId());
+			
+			(new ListarTareasInboxAction()).execute(request, response);
+		
+		}
+		catch (BusinessException b) {
+			Log.debug("Algo ha ocurrido obteniendo la tarea %d: %s",
+					tarea.getId(), b.getMessage());
+			resultado="FRACASO";
+		}
+		return resultado;
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getName();
+	}
+	
+}

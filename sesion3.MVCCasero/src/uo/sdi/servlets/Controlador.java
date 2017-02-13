@@ -143,7 +143,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("semana", new ListarTareasSemanaAction());
 		mapaRegistrado.put("newTarea", new CrearTareaAction());
 		mapaRegistrado.put("newCategory", new CrearCategoriaAction());
-
+		mapaRegistrado.put("modificarTarea", new ObtenerTareaAction());
+		mapaRegistrado.put("modificarTarea2", new ModificarTareaAction());
+		
+		
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
 		Map<String, Accion> mapaAdmin = new HashMap<String, Accion>();
@@ -240,7 +243,17 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("newCategory", resultadoYJSP);
+		
+		// Crear tarea hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/modificarTareas.jsp");
+		opcionResultadoYJSP.put("modificarTarea", resultadoYJSP);
 
+		// Crear tarea hoy
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
+		opcionResultadoYJSP.put("modificarTarea2", resultadoYJSP);
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
 		// Mapa de navegación del ADMINISTRADOR

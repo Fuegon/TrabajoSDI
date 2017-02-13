@@ -26,7 +26,9 @@ public class ListarTareasSemanaAction implements Accion {
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaTasks = taskService.findWeekTasksByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaTasks = taskService.findWeekTasksByUserId(user.getId());
+			}
 			request.setAttribute("listaTasks", listaTasks);
 			request.setAttribute("titulo", "Tareas de la semana");
 			request.setAttribute("categoria", null);
@@ -34,7 +36,9 @@ public class ListarTareasSemanaAction implements Accion {
 					listaTasks.size());
 			
 			List<Category> listaCategory;
-			listaCategory = taskService.findCategoriesByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaCategory = taskService.findCategoriesByUserId(user.getId());
+			}
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
 			request.setAttribute("listaCategory", listaCategory);

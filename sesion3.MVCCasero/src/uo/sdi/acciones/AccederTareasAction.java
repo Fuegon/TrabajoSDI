@@ -26,7 +26,9 @@ public class AccederTareasAction implements Accion {
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
-			listaCategory = taskService.findCategoriesByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaCategory = taskService.findCategoriesByUserId(user.getId());
+			}
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
 			request.setAttribute("listaCategory", listaCategory);
@@ -35,7 +37,9 @@ public class AccederTareasAction implements Accion {
 					listaCategory.size());
 			
 			//Se guardan las tareas
-			listaTask = taskService.findUnfinishedTasksByUserId(user.getId());
+			synchronized(request.getServletContext())  {
+				listaTask = taskService.findUnfinishedTasksByUserId(user.getId());
+			}
 			request.setAttribute("listaTasks", listaTask);
 			Log.debug("Obtenida lista de tasks del usuario  no terminadas son "
 					+ " [%d] tasks", 
