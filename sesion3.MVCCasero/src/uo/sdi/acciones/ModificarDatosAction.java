@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import alb.util.log.Log;
 import uo.sdi.business.Services;
 import uo.sdi.business.UserService;
@@ -37,7 +35,7 @@ public class ModificarDatosAction implements Accion {
 					userClone.getLogin(), nuevoEmail);
 		}
 		if(canChangePassword(newPass, newPassAgain, oldPass, userClone)){
-			userClone.setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));
+			userClone.setAndHashPassword(newPass);
 			Log.debug("Modificada contraseña de [%s] con el valor [%s]", 
 					userClone.getLogin(), newPass);
 		}else{

@@ -58,6 +58,13 @@ public class User {
 		this.password = password;
 		return this;
 	}
+	/**
+	 * Asigna la contraseña al usuario y la hashea para guardarla
+	 * @param newPass
+	 */
+	public void setAndHashPassword(String newPass) {
+		setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));	
+	}	
 
 	public Boolean getIsAdmin() {
 		return isAdmin;
@@ -140,6 +147,7 @@ public class User {
 		if (status != other.status)
 			return false;
 		return true;
-	}	
+	}
+
 	
 }

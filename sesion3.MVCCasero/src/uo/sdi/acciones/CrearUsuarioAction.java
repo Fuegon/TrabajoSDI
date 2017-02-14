@@ -8,7 +8,6 @@ import uo.sdi.business.Services;
 import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.User;
-import uo.sdi.dto.util.Cloner;
 import alb.util.log.Log;
 
 public class CrearUsuarioAction implements Accion {
@@ -53,7 +52,7 @@ public class CrearUsuarioAction implements Accion {
 				resultado= "FRACASO";
 				return resultado;
 			}
-			user.setPassword(newPass);
+			user.setAndHashPassword(newPass);
 			
 			userService.registerUser(user);
 			
