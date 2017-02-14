@@ -39,13 +39,8 @@ public class CrearUsuarioAction implements Accion {
 				resultado= "FRACASO";
 				return resultado;
 			}
-<<<<<<< HEAD
 			user.setAndHashPassword(newPass);
-=======
->>>>>>> 3c077745505ac6597b1a80cb15523f5c6411d2cd
-			
-			user.setPassword(newPass);
-			
+
 			synchronized(request.getServletContext())  {
 				userService.registerUser(user);
 			}

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import alb.util.date.DateUtil;
 
-public class Task {
+public class Task implements Comparable<Task>{
 	private Long id;
 
 	private String title;
@@ -165,6 +165,22 @@ public class Task {
 		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Task o) {
+		if(this.planned == null){
+			if(o.getPlanned() == null){
+				return 0;
+			}else{
+				return -1;
+			}
+		}else{
+			if(o.getPlanned() == null){
+				return 1;
+			}
+		}
+		return this.planned.compareTo(o.getPlanned());
 	}
 
 }

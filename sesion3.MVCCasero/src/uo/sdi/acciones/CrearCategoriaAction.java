@@ -7,7 +7,6 @@ import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Category;
-import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 

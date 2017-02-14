@@ -28,14 +28,19 @@ public class ObtenerTareaAction implements Accion {
 		try {
 			TaskService taskService = Services.getTaskService();
 			Task task;
+			List<Category> categorias;
+			
+			//XXX: Esto es necesario?
 			synchronized(request.getServletContext())  {
 				task = taskService.findTaskById(IdTrue);
+				categorias = taskService.findCategoriesByUserId(user.getId());
 			
 			}
 			
 			
 			
 			request.setAttribute("tarea", task);
+			request.setAttribute("categorias", categorias);
 			
 			Log.debug("Obtenida tarea numero [%d]", 
 					task.getId());

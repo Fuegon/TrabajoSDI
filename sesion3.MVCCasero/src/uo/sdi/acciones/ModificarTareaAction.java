@@ -1,7 +1,5 @@
 package uo.sdi.acciones;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +8,7 @@ import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
+import alb.util.date.DateUtil;
 import alb.util.log.Log;
 
 public class ModificarTareaAction implements Accion {
@@ -26,8 +25,8 @@ public class ModificarTareaAction implements Accion {
 
 		String id = request.getParameter("id");
 		String title = request.getParameter("title");
-		String comment =  request.getParameter("comment");
-		String planned =  request.getParameter("planned");
+		String comment =  request.getParameter("comment").trim();
+		String planned =  request.getParameter("planned").trim();
 		String categoryId = request.getParameter("categoryId");
 		
 		Long categoryIdTrue = null;
@@ -38,8 +37,8 @@ public class ModificarTareaAction implements Accion {
 			tarea.setId(Long.valueOf(id));
 			tarea.setTitle(title);
 			tarea.setUserId(user.getId());
-			if(!comment.equals("null")){tarea.setComments(comment);}
-			if(!planned.equals("null")){tarea.setPlanned(Date.valueOf(planned));}
+			if(!comment.isEmpty()){tarea.setComments(comment);}
+			if(!planned.isEmpty()){tarea.setPlanned(DateUtil.fromString(planned));}
 			if(categoryIdTrue!= null){tarea.setCategoryId(categoryIdTrue);}
 			
 			synchronized(request.getServletContext())  {

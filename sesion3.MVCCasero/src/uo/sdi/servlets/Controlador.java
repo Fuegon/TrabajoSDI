@@ -138,6 +138,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("cerrarSesion", new CerrarSesionAction());
 		mapaRegistrado.put("tareas", new AccederTareasAction());
 		mapaRegistrado.put("mostrarLista", new AccederTareasAction());
+		mapaRegistrado.put("tareaCategoria", new ListarTareasCategoriaAction());
 		mapaRegistrado.put("hoy", new ListarTareasHoyAction());
 		mapaRegistrado.put("inbox", new ListarTareasInboxAction());
 		mapaRegistrado.put("semana", new ListarTareasSemanaAction());
@@ -233,18 +234,23 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("inbox", resultadoYJSP);
-		
+
+		// Mostrar de categoria
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("tareaCategoria", resultadoYJSP);
+
 		// Crear tarea hoy
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("newTarea", resultadoYJSP);
-		
-		// Crear tarea hoy
+
+		// Crear categoria
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("newCategory", resultadoYJSP);
-		
-		// Crear tarea hoy
+
+		// Modificar tarea
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/modificarTareas.jsp");
 		opcionResultadoYJSP.put("modificarTarea", resultadoYJSP);

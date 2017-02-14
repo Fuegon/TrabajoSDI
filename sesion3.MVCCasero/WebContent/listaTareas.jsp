@@ -5,11 +5,17 @@
 <html>
 <head>
 <title>TaskManager - Página principal del usuario</title>
+<style type="text/css">
+.red{
+	color: #FF0000;
+}
+</style>
 </head>
 <body>
 	<a name ="inbox_link" href ="inbox">Inbox</a>
 	<a name ="hoy_link" href ="hoy">Hoy</a>
 	<a name ="semana_link" href ="semana">Semana</a>
+	<a name ="todas_link" href ="tareas">Todas</a>
 	<br/>
 	<form action="newTarea" method="POST">
 		<label>Añadir tarea: <input type="text"
@@ -29,11 +35,15 @@
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
+					<th>Fecha planificada</th>
 				</tr>
 			<c:forEach var="entry" items="${listaTasks}" varStatus="i">
 				<tr id="item_${i.index}">
 					<td><a href="${entry.id}">${entry.id}</a></td>
 					<td>${entry.title}</td>
+					<jsp:useBean id="now" class="java.util.Date"/>
+    				 
+					<td><span <c:if test="${entry.planned lt now}">class="red"</c:if>><fmt:formatDate value="${entry.planned}" pattern="dd/MM/yyyy" /></span></td>
 					<td><a href="modificarTarea?Id=${entry.id}">Modificar</a></td>
 					
 				</tr>
@@ -47,7 +57,7 @@
 				</tr>
 			<c:forEach var="entry" items="${listaCategory}" varStatus="i">
 				<tr id="item_${i.index}">
-					<td><a href="${entry.id}">${entry.id}</a></td>
+					<td><a href="tareaCategoria?id=${entry.id}">${entry.id}</a></td>
 					<td>${entry.name}</td>
 				</tr>
 			</c:forEach>
