@@ -13,7 +13,7 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class ListarTareasHoyAction implements Accion {
+public class ListarTareasSemanaAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -27,10 +27,10 @@ public class ListarTareasHoyAction implements Accion {
 		try {
 			TaskService taskService = Services.getTaskService();
 			synchronized(request.getServletContext())  {
-				listaTasks = taskService.findTodayTasksByUserId(user.getId());
+				listaTasks = taskService.findWeekTasksByUserId(user.getId());
 			}
 			request.setAttribute("listaTasks", listaTasks);
-			request.setAttribute("titulo", "Tareas de hoy");
+			request.setAttribute("titulo", "Tareas de la semana");
 			request.setAttribute("categoria", null);
 			Log.debug("Obtenida lista de tasks de hoy conteniendo [%d] tasks", 
 					listaTasks.size());

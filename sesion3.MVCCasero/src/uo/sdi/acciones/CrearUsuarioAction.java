@@ -28,38 +28,31 @@ public class CrearUsuarioAction implements Accion {
 			UserService userService = Services.getUserService();
 	
 			HttpSession session=request.getSession();
-			boolean esta = userService.isLogin(usuario);
-			if(usuario.isEmpty()||usuario.length()<4
-					||esta)
-			{
-				Log.debug("El usuario no es correcto");
-				resultado= "FRACASO";
-				return resultado;
-			}
-			user.setLogin(usuario);
 			
-			if(!email.contains("@")||!email.contains("."))
-			{
-				Log.debug("El email no es correcto");
-				resultado= "FRACASO";
-				return resultado;
-			}
+			user.setLogin(usuario);
+						
 			user.setEmail(email);
 			
-			if(!newPass.equals(newPassAgain)||newPass.length()<4)
+			if(!newPass.equals(newPassAgain))
 			{
 				Log.debug("El password no es correcto");
 				resultado= "FRACASO";
 				return resultado;
 			}
+<<<<<<< HEAD
 			user.setAndHashPassword(newPass);
+=======
+>>>>>>> 3c077745505ac6597b1a80cb15523f5c6411d2cd
 			
-			userService.registerUser(user);
+			user.setPassword(newPass);
 			
+			synchronized(request.getServletContext())  {
+				userService.registerUser(user);
+			}
 			session.invalidate();
 			}
 			catch (BusinessException b) {
-				Log.debug("Algo ha ocurrido actualizando los datos de [%s]: %s", 
+				Log.debug("Algo ha ocurrido creando usuarios los datos de [%s]: %s", 
 						user.getLogin(),b.getMessage());
 				resultado="FRACASO";
 			}

@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
-import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class ListarTareasHoyAction implements Accion {
+public class AccederTareasAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -21,21 +20,12 @@ public class ListarTareasHoyAction implements Accion {
 		
 		String resultado="EXITO";
 		
-		List<Task> listaTasks;
+		List<uo.sdi.dto.Category> listaCategory;
+		List<Task> listaTask;
 		User user;
 		user = (User) request.getSession().getAttribute("user");
 		try {
 			TaskService taskService = Services.getTaskService();
-			synchronized(request.getServletContext())  {
-				listaTasks = taskService.findTodayTasksByUserId(user.getId());
-			}
-			request.setAttribute("listaTasks", listaTasks);
-			request.setAttribute("titulo", "Tareas de hoy");
-			request.setAttribute("categoria", null);
-			Log.debug("Obtenida lista de tasks de hoy conteniendo [%d] tasks", 
-					listaTasks.size());
-			
-			List<Category> listaCategory;
 			synchronized(request.getServletContext())  {
 				listaCategory = taskService.findCategoriesByUserId(user.getId());
 			}
@@ -45,10 +35,21 @@ public class ListarTareasHoyAction implements Accion {
 			Log.debug("Obtenida lista de categorias del usuario son "
 					+ " [%d] categorias", 
 					listaCategory.size());
+			
+			//Se guardan las tareas
+			synchronized(request.getServletContext())  {
+				listaTask = taskService.findUnfinishedTasksByUserId(user.getId());
+			}
+			request.setAttribute("listaTasks", listaTask);
+			Log.debug("Obtenida lista de tasks del usuario  no terminadas son "
+					+ " [%d] tasks", 
+					listaTask.size());
+			
 		}
 		catch (BusinessException b) {
-			Log.debug("Algo ha ocurrido obteniendo lista de tasks de hoy: %s",
-					b.getMessage());
+			Log.debug("Algo ha ocurrido obteniendo lista de categorias"
+					+ "o de tareas de %s: %s",
+					user,b.getMessage());
 			resultado="FRACASO";
 		}
 		return resultado;

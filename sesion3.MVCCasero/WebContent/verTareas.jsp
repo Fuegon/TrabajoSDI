@@ -7,6 +7,7 @@
 <title>TaskManager - Página principal del usuario</title>
 </head>
 <body>
+	<h1>${titulo}</h1>
 	<table border="1" align="center">
 			<tr>
 				<th>ID</th>
@@ -19,6 +20,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
 	<%@ include file="pieDePagina.jsp"%>
