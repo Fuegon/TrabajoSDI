@@ -3,7 +3,7 @@ package uo.sdi.dto;
 public class Category {
 	private Long id;
 	private String name;
-	private Long userId;
+	private Long userId; 
 	
 	public String getName() {
 		return name;

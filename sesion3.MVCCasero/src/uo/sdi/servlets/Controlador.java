@@ -149,6 +149,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("eliminarTarea", new EliminarTareaAction());
 		mapaRegistrado.put("finalizarTarea", new FinalizarTareaAction());
 		mapaRegistrado.put("duplicarCategoria", new DuplicarCategoriaAction());
+		mapaRegistrado.put("modificarCategoria", new ObtenerCategoriaAction());
+		mapaRegistrado.put("modificar2Categoria", new ModificarCategoriaAction());
+		mapaRegistrado.put("eliminarCategoria", new ObtenerCategoria2Action());
+		mapaRegistrado.put("eliminar2Categoria", new EliminarCategoriaAction());
 
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
@@ -285,6 +289,33 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		opcionResultadoYJSP.put("duplicarCategoria", resultadoYJSP);
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
+		// Obtener categoria 
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/modificarCategoria.jsp");
+		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("modificarCategoria", resultadoYJSP);
+		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
+		
+		// Modificar categoria 
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("modificar2Categoria", resultadoYJSP);
+		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
+		
+		// Obtener categoria 
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/eliminarCategoria.jsp");
+		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("eliminarCategoria", resultadoYJSP);
+		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
+				
+		// Modificar categoria 
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("eliminar2Categoria", resultadoYJSP);
+		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Mapa de navegación del ADMINISTRADOR
 		// Validarse

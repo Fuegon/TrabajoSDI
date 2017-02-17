@@ -8,10 +8,9 @@ import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Category;
-import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class DuplicarCategoriaAction implements Accion {
+public class ObtenerCategoriaAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -19,10 +18,9 @@ public class DuplicarCategoriaAction implements Accion {
 		
 		String resultado="EXITO";
 		
-		User user;
-		user = (User) request.getSession().getAttribute("user");
 		String id = (String) request.getParameter("Id");
 		Long IdTrue = Long.valueOf(id);
+		
 		try {
 			TaskService taskService = Services.getTaskService();
 		Category categoria;
@@ -30,18 +28,13 @@ public class DuplicarCategoriaAction implements Accion {
 			//XXX: Esto es necesario?
 			synchronized(request.getServletContext())  {
 				categoria = taskService.findCategoryById(IdTrue);
-					
-				Category nueva = new Category();
-				nueva.setName(categoria.getName()+"-copy");
-				nueva.setUserId(user.getId());
-				taskService.createCategory(nueva);
+				
 			
 			}
 									
-			Log.debug("Duplicada categoria numero [%d]", 
+			Log.debug("Recogida tarea categoria numero [%d]", 
 					IdTrue);
-			
-			(new ListarTareasInboxAction()).execute(request, response);
+			request.setAttribute("categoria", categoria);
 			
 					}
 		catch (BusinessException b) {

@@ -62,6 +62,8 @@
 					<td><a href="tareaCategoria?id=${entry.id}">${entry.id}</a></td>
 					<td>${entry.name}</td>
 					<td><a href="duplicarCategoria?Id=${entry.id}">Duplicar</a></td>
+					<td><a href="modificarCategoria?Id=${entry.id}">Modificar</a></td>
+					<td><a href="eliminarCategoria?Id=${entry.id}">Eliminar</a></td>
 				</tr>
 			</c:forEach>
 		</table></td>
