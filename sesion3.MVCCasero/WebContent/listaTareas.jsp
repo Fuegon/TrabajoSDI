@@ -61,6 +61,7 @@
 				<tr id="item_${i.index}">
 					<td><a href="tareaCategoria?id=${entry.id}">${entry.id}</a></td>
 					<td>${entry.name}</td>
+					<td><a href="duplicarCategoria?Id=${entry.id}">Duplicar</a></td>
 				</tr>
 			</c:forEach>
 		</table></td>
