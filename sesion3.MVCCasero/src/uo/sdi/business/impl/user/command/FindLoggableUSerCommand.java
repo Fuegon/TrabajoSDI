@@ -15,7 +15,7 @@ public class FindLoggableUSerCommand<T> implements Command<User> {
 		this.login = login;
 		this.password = password;
 	}
-
+ 
 	@Override
 	public User execute() throws BusinessException {
 		User user = Persistence.getUserDao()
@@ -23,7 +23,7 @@ public class FindLoggableUSerCommand<T> implements Command<User> {
 		
 		return (user != null && user.getStatus().equals( UserStatus.ENABLED ) && user.checkPassword(password))
 				? user
-				: null;
+		 		: null;
 	}
 
 

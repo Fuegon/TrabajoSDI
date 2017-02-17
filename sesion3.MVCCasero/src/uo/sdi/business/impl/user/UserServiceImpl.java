@@ -3,7 +3,6 @@ package uo.sdi.business.impl.user;
 import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.business.impl.command.CommandExecutor;
-import uo.sdi.business.impl.user.command.FindByLoginCommand;
 import uo.sdi.business.impl.user.command.FindLoggableUSerCommand;
 import uo.sdi.business.impl.user.command.RegisterUserCommand;
 import uo.sdi.business.impl.user.command.UpdateUserDetailsCommand;
@@ -34,12 +33,7 @@ public class UserServiceImpl implements UserService {
 		);
 	}
 
-	@Override
-	public boolean isLogin(String login) throws BusinessException {
-		// TODO Auto-generated method stub
-		return new CommandExecutor<Boolean>().execute(
-				new FindByLoginCommand<Boolean>(login));
-	}
+	
 	
 	
 
