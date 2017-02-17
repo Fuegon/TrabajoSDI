@@ -45,6 +45,8 @@
     				 
 					<td><span <c:if test="${entry.planned lt now}">class="red"</c:if>><fmt:formatDate value="${entry.planned}" pattern="dd/MM/yyyy" /></span></td>
 					<td><a href="modificarTarea?Id=${entry.id}">Modificar</a></td>
+					<td><a href="finalizarTarea?Id=${entry.id}">Finalizar</a></td>
+					<td><a href="eliminarTarea?Id=${entry.id}">Eliminar</a></td>
 					
 				</tr>
 			</c:forEach>
