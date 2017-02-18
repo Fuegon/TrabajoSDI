@@ -29,19 +29,22 @@ public class ModificarDatosAction implements Accion {
 		HttpSession session=request.getSession();
 		User user=((User)session.getAttribute("user"));
 		User userClone=Cloner.clone(user);
-		if(!nuevoEmail.isEmpty()){
+		try {
+			//Email
+			if(nuevoEmail.isEmpty()){
+				throw new BusinessException("El email no puede estar vacio.");
+			}
 			userClone.setEmail(nuevoEmail);
 			Log.debug("Modificado email de [%s] con el valor [%s]", 
 					userClone.getLogin(), nuevoEmail);
-		}
-		if(canChangePassword(newPass, newPassAgain, oldPass, userClone)){
+			
+			//Contraseña
+			canChangePassword(newPass, newPassAgain, oldPass, userClone);
 			userClone.setAndHashPassword(newPass);
-			Log.debug("Modificada contraseña de [%s] con el valor [%s]", 
-					userClone.getLogin(), newPass);
-		}else{
-			Log.debug("No se ha podido cambiar la contraseña");
-		}
-		try {
+			Log.debug("Modificada contraseña de [%s]", 
+					userClone.getLogin());
+			
+			//Guardar
 			UserService userService = Services.getUserService();
 			userService.updateUserDetails(userClone);
 			session.setAttribute("user",userClone);
@@ -50,13 +53,20 @@ public class ModificarDatosAction implements Accion {
 			Log.debug("Algo ha ocurrido actualizando los datos de [%s]: %s", 
 					user.getLogin(),b.getMessage());
 			resultado="FRACASO";
+			request.setAttribute("mensajeParaElUsuario", b.getMessage());
 		}
 		return resultado;
 	}
 
-	private boolean canChangePassword(String newPass, String newPassAgain,
-			String oldPass, User userClone) {
-		return newPass.equals(newPassAgain) && oldPass.equals(userClone.getPassword());
+	private void canChangePassword(String newPass, String newPassAgain,
+			String oldPass, User userClone) throws BusinessException {
+		String msg = "No se puede cambiar la contraseña: ";
+		if(userClone.checkPassword(oldPass)){
+			throw new BusinessException(msg + "La contraseña no es correcta.");
+		}
+		if(newPass.equals(newPassAgain) ){
+			throw new BusinessException(msg + "Las contraseñas no coinciden.");
+		}
 	}
 
 	@Override

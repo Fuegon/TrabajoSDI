@@ -2,6 +2,8 @@ package uo.sdi.dto;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import uo.sdi.business.exception.BusinessException;
+import uo.sdi.business.impl.util.UserCheck;
 import uo.sdi.dto.types.UserStatus;
 
 /**
@@ -61,8 +63,10 @@ public class User {
 	/**
 	 * Asigna la contraseña al usuario y la hashea para guardarla
 	 * @param newPass
+	 * @throws BusinessException si no cumple las condiciones de contraseña valida
 	 */
-	public void setAndHashPassword(String newPass) {
+	public void setAndHashPassword(String newPass) throws BusinessException {
+		UserCheck.minPasswordLength(newPass);
 		setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));	
 	}	
 

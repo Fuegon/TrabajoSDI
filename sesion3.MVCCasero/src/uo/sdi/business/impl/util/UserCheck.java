@@ -26,8 +26,12 @@ public class UserCheck {
 	}
 
 	public static void minPasswordLength(User user) throws BusinessException {
+		minPasswordLength(user.getPassword());
+	}
+	
+	public static void minPasswordLength(String password) throws BusinessException {
 		String check = "The password must be at least 6 chars long";
-		BusinessCheck.isTrue( user.getPassword().length() >= 6, check);
+		BusinessCheck.isTrue( password.length() >= 6, check);
 	}
 
 	public static void notRepeatedLogin(User user) throws BusinessException {

@@ -26,18 +26,16 @@ public class CrearUsuarioAction implements Accion {
 
 		try {
 			UserService userService = Services.getUserService();
-	
+
 			HttpSession session=request.getSession();
-			
+
 			user.setLogin(usuario);
-						
+
 			user.setEmail(email);
-			
+
 			if(!newPass.equals(newPassAgain))
 			{
-				Log.debug("El password no es correcto");
-				resultado= "FRACASO";
-				return resultado;
+				throw new BusinessException("Las contraseñas no coinciden.");
 			}
 			user.setAndHashPassword(newPass);
 
@@ -45,12 +43,13 @@ public class CrearUsuarioAction implements Accion {
 				userService.registerUser(user);
 			}
 			session.invalidate();
-			}
-			catch (BusinessException b) {
-				Log.debug("Algo ha ocurrido creando usuarios los datos de [%s]: %s", 
-						user.getLogin(),b.getMessage());
-				resultado="FRACASO";
-			}
+		}
+		catch (BusinessException b) {
+			Log.debug("Algo ha ocurrido creando usuarios los datos de [%s]: %s", 
+					user.getLogin(),b.getMessage());
+			request.setAttribute("mensajeParaElUsuario", b.getMessage());
+			resultado="FRACASO";
+		}
 		return resultado;
 	}
 
