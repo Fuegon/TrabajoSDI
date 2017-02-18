@@ -32,6 +32,7 @@ public class CrearTareaAction implements Accion {
 				task.setCategoryId(category_id);
 			}
 			task.setUserId(user.getId());
+			
 			task.setTitle(titulo);
 			
 			taskService.createTask(task);
@@ -42,6 +43,8 @@ public class CrearTareaAction implements Accion {
 				Log.debug("Algo ha ocurrido actualizando los datos de [%s]: %s", 
 						user.getLogin(),b.getMessage());
 				resultado="FRACASO";
+				request.setAttribute("mensajeParaElUsuario", 
+						b.getMessage());
 			}
 		return resultado;
 	}

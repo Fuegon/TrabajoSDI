@@ -13,17 +13,19 @@ import uo.sdi.dto.User;
 import alb.util.log.Log;
 
 public class AccederTareasAction implements Accion {
-	
+
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
+
 		String resultado="EXITO";
 		
 		List<uo.sdi.dto.Category> listaCategory;
 		List<Task> listaTask;
 		User user;
-		user = (User) request.getSession().getAttribute("user");
+
+		user = (User) request.getSession().getAttribute("user");			
+
 		try {
 			TaskService taskService = Services.getTaskService();
 			synchronized(request.getServletContext())  {
@@ -35,7 +37,7 @@ public class AccederTareasAction implements Accion {
 			Log.debug("Obtenida lista de categorias del usuario son "
 					+ " [%d] categorias", 
 					listaCategory.size());
-			
+
 			//Se guardan las tareas
 			synchronized(request.getServletContext())  {
 				listaTask = taskService.findUnfinishedTasksByUserId(user.getId());
@@ -44,7 +46,7 @@ public class AccederTareasAction implements Accion {
 			Log.debug("Obtenida lista de tasks del usuario  no terminadas son "
 					+ " [%d] tasks", 
 					listaTask.size());
-			
+
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de categorias"
@@ -54,10 +56,10 @@ public class AccederTareasAction implements Accion {
 		}
 		return resultado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
-	
+
 }

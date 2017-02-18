@@ -35,6 +35,8 @@ public class CrearCategoriaAction implements Accion {
 			catch (BusinessException b) {
 				Log.debug("Algo ha ocurrido actualizando los datos de [%s]: %s", 
 						user.getLogin(),b.getMessage());
+				request.setAttribute("mensajeParaElUsuario", 
+						b.getMessage());
 				resultado="FRACASO";
 			}
 		return resultado;

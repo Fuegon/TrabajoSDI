@@ -35,9 +35,9 @@
 				</label></td>
 			</tr>
 			<tr>
-				<td><label>Comment: <input type="text" name="comment"
-						size="15" placeholder="Comentario"
-						value='<c:if test="${tarea.comments !=null}"> ${tarea.comments}</c:if>'>
+				<td><label>Comment: <textarea cols="40" rows ="5" name="comment"
+						placeholder="Comentario"
+						><c:if test="${tarea.comments !=null}"> ${tarea.comments}</c:if></textarea>
 				</label></td>
 			</tr>
 			<tr>

@@ -30,7 +30,6 @@ public class ObtenerTareaAction implements Accion {
 			Task task;
 			List<Category> categorias;
 			
-			//XXX: Esto es necesario?
 			synchronized(request.getServletContext())  {
 				task = taskService.findTaskById(IdTrue);
 				categorias = taskService.findCategoriesByUserId(user.getId());

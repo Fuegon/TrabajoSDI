@@ -48,8 +48,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 			objetoAccion = buscarObjetoAccionParaAccionNavegador(rolAntes,
 					accionNavegadorUsuario);
 
-			request.removeAttribute("mensajeParaElUsuario");
-
 			resultado = objetoAccion.execute(request, response);
 
 			rolDespues = obtenerRolDeSesion(request);
@@ -85,6 +83,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 				.getRequestDispatcher(jspSiguiente);
 
 		dispatcher.forward(request, response);
+		request.removeAttribute("mensajeParaElUsuario");
 	}
 
 	private String obtenerRolDeSesion(HttpServletRequest req) {
@@ -249,11 +248,13 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		// Crear tarea hoy
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		resultadoYJSP.put("FRACASO", "/inbox");
 		opcionResultadoYJSP.put("newTarea", resultadoYJSP);
 
 		// Crear categoria
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		resultadoYJSP.put("FRACASO", "/inbox");
 		opcionResultadoYJSP.put("newCategory", resultadoYJSP);
 
 		// Modificar tarea

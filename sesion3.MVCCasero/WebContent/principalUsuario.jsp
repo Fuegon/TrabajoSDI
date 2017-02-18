@@ -48,12 +48,15 @@
 		<c:if test="${user.isAdmin}">
 			<tr>
 				<td>Opciones administrador:</td>
-				<td id="adminUsers"><a href="adminUsers">Administrar usuarios</a></td>
+				<td id="adminUsers"><a href="adminUsers">Administrar
+						usuarios</a></td>
 			</tr>
 		</c:if>
 	</table>
-	<br/>
-	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+	<c:if test="${!user.isAdmin}">
+		<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+	</c:if>
+	<br />
 	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
