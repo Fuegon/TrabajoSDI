@@ -24,10 +24,12 @@ public class ListarTareasInboxAction implements Accion {
 		List<Task> listaTasks;
 		User user;
 		user = (User) request.getSession().getAttribute("user");
+		String mostrar = request.getParameter("filtroTerminadas");
 		try {
 			TaskService taskService = Services.getTaskService();
 			synchronized(request.getServletContext())  {
 				listaTasks = taskService.findInboxTasksByUserId(user.getId());
+				listaTasks.addAll(taskService.findFinishedInboxTasksByUserId(user.getId()));
 			}
 			request.setAttribute("listaTasks", listaTasks);
 			request.setAttribute("titulo", "Tareas del inbox");
@@ -39,7 +41,7 @@ public class ListarTareasInboxAction implements Accion {
 			synchronized(request.getServletContext())  {
 
 				listaCategory = taskService.findCategoriesByUserId(user.getId());
-			}
+			} 
 			request.setAttribute("titulo", "Tareas sin terminar");
 			request.setAttribute("categoria", null);
 			request.setAttribute("listaCategory", listaCategory);

@@ -26,7 +26,7 @@ public class EliminarTareaAction implements Accion {
 			synchronized(request.getServletContext())  {
 				taskService.deleteTask(IdTrue);
 			
-			}
+			} 
 		
 			Log.debug("Eliminada tarea numero [%d]", 
 					IdTrue);
