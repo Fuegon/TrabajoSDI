@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TaskManager - Página principal del usuario</title>
+<title>TaskManager - Eliminar categoria</title>
+<%@ include file="styles.jsp"%>
 </head>
 <body>
 	<i>Iniciaste sesión el <fmt:formatDate
@@ -26,33 +27,25 @@
 	<form action="eliminar2Categoria" method="POST">
 		<table>
 			<tr>
-				<td>
-					Esta seguro que quiere elimnar esta tarea
-				</td>
+				<td>Esta seguro que quiere elimnar esta tarea</td>
 			</tr>
 			<tr>
 				<td><input type="hidden" name="id" size="15"
 					value="<jsp:getProperty property="id" name="categoria" />"></td>
 			</tr>
 			<tr>
-				<td><label>Title: <input type="text" name="name"
-						size="15" value="${categoria.name}">
-				</label></td>
+				<td>Title: ${categoria.name}</td>
 			</tr>
-			
+
 			<tr>
-				<td><input type="submit" value="Eliminar"></td>
+				<td><input class="button danger" type="submit" value="Eliminar"></td>
 			</tr>
 		</table>
-
-		<%
-			request.setAttribute("categoria", categoria);
-		%>
 	</form>
 	<br />
-	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+	<%@ include file="mostrarTareas.jsp"%>
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
+	<%@ include file="cerrarSesion.jsp"%>
 
 	<%@ include file="pieDePagina.jsp"%>
 </body>

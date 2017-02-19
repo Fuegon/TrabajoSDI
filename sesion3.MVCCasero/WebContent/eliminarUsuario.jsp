@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="styles.jsp"%>
-<title>TaskManager - Página principal del usuario</title>
+<title>TaskManager - Eliminar usuario</title>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 		¿Esta seguro que quiere eliminar a este usuario? <br/><input type="hidden"
 			name="id" size="15" value="${userToDelete.id}"> <input
 			id="eliminar" type="submit" class="button danger" value="Eliminar">
-		<a id="cancelar" class="button neutral" href="adminUsers">Cancelar</a>
+		<a id="cancelar" class="button" href="adminUsers">Cancelar</a>
 
 
 	</form>

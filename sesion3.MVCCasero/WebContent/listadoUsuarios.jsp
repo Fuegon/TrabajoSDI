@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>TaskManager - Listado de categorías</title>
+<title>TaskManager - Listado de usuarios</title>
+<%@ include file="styles.jsp" %>
 </head>
 <body>
 	<table border="1" align="center">
@@ -25,17 +26,17 @@
 				<td>${entry.status}</td>
 				<td><c:choose>
 						<c:when test="${entry.status == 'ENABLED'}">
-							<a href="disableUser?id=${entry.id}">Desactivar</a>
+							<a class="button warning" href="disableUser?id=${entry.id}">Desactivar</a>
 						</c:when>
 						<c:otherwise>
-							<a href="enableUser?id=${entry.id}">Activar</a>
+							<a class="button confirm" href="enableUser?id=${entry.id}">Activar</a>
 						</c:otherwise>
-					</c:choose> <a href="deleteUser?id=${entry.id}">Borrar usuario</a></td>
+					</c:choose> <a class="button danger" href="deleteUser?id=${entry.id}">Borrar usuario</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
+	<%@ include file="cerrarSesion.jsp" %>
 	<br/>
 	<%@ include file="pieDePagina.jsp"%>
 </body>

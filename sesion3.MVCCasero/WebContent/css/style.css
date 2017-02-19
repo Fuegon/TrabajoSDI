@@ -1,20 +1,44 @@
-body{
+body {
   font-family: sans-serif;
 }
 
 .button {
-    background-color: #bbb;
-    color: black;
-    padding: 7px 20px;
-    text-align: center;
-    border: none;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-size: 14px;
+  background-color: #bbb;
+  color: black;
+  padding: 7px 20px;
+  text-align: center;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.button:hover {
+  background-color: #a2a2a2;
 }
 
-.confirm {background-color: #4caf50;}
-.danger {background-color: #f44336;} 
-.warning {background-color: #ffc107;}
+.confirm {
+  background-color: #4caf50;
+}
+.confirm:hover {
+  background-color: #3d8b40;
+}
+
+.danger {
+  background-color: #f44336;
+}
+.danger:hover {
+  background-color: #ea1c0d;
+}
+
+.warning {
+  background-color: #ffc107;
+}
+.warning:hover {
+  background-color: #d39e00;
+}
+
+.red {
+	color: #FF0000;
+}

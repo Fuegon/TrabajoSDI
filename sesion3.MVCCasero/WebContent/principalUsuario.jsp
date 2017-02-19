@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>TaskManager - Página principal del usuario</title>
+<%@ include file="styles.jsp"%>
 </head>
 <body>
 	<i>Iniciaste sesión el <fmt:formatDate
@@ -30,7 +31,7 @@
 					</label> <label>Repita la contraseña: <input type="password"
 						name="newPassAgain" size="15"></label> <label>Antigua
 						contraseña: <input type="password" name="oldPass" size="15">
-					</label> <input type="submit" value="Modificar">
+					</label> <input class="button" type="submit" value="Modificar">
 				</form></td>
 		</tr>
 		<tr>
@@ -48,17 +49,17 @@
 		<c:if test="${user.isAdmin}">
 			<tr>
 				<td>Opciones administrador:</td>
-				<td id="adminUsers"><a href="adminUsers">Administrar
+				<td id="adminUsers"><a class="button" href="adminUsers">Administrar
 						usuarios</a></td>
 			</tr>
 		</c:if>
 	</table>
 	<c:if test="${!user.isAdmin}">
-		<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+		<%@ include file="mostrarTareas.jsp"%>
 	</c:if>
 	<br />
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
+	<%@ include file="cerrarSesion.jsp"%>
 
 	<%@ include file="pieDePagina.jsp"%>
 </body>

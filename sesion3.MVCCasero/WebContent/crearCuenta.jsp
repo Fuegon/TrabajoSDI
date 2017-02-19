@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>TaskManager - Crear nueva cuenta</title>
+<%@ include file="styles.jsp" %>
 </head>
 <body>
 	<i>Iniciaste sesión el <fmt:formatDate
@@ -26,12 +27,11 @@
 		<tr><td><label>Nueva contraseña: <input type="password" name="newPass" size="15"></label></td></tr>
 		<tr><td><label>Repita la contraseña: <input type="password" name="newPassAgain" size="15"></label></td></tr>
 						 
-		<tr><td><input type="submit" value="Crear cuenta"></td></tr>
+		<tr><td><input class="button" type="submit" value="Crear cuenta"></td></tr>
 	</table>
 			</form>
 	
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
 	<%@ include file="pieDePagina.jsp"%>
 </body>

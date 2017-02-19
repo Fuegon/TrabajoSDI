@@ -1,0 +1,1 @@
+<a id="cerrarSesion_link_id" class="button warning" href="cerrarSesion">Cerrar sesión</a>

@@ -25,7 +25,6 @@ public class ObtenerCategoria2Action implements Accion {
 			TaskService taskService = Services.getTaskService();
 		Category categoria;
 			
-			//XXX: Esto es necesario?
 			synchronized(request.getServletContext())  {
 				categoria = taskService.findCategoryById(IdTrue);
 				

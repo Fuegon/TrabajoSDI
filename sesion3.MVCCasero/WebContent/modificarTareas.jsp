@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TaskManager - Página principal del usuario</title>
+<title>TaskManager - Modificar tarea</title>
+<%@ include file="styles.jsp" %>
 </head>
 <body>
 	<i>Iniciaste sesión el <fmt:formatDate
@@ -61,18 +62,15 @@
 				</label></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Modificar"></td>
+				<td><input class="button confirm" type="submit" value="Modificar"></td>
 			</tr>
 		</table>
 
-		<%
-			request.setAttribute("tarea2", tarea);
-		%>
 	</form>
 	<br />
-	<a id="mostrarLista_lin_id" href="tareas">Mostrar tareas</a>
+	<%@ include file="mostrarTareas.jsp" %>
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
+	<%@ include file="cerrarSesion.jsp" %>
 
 	<%@ include file="pieDePagina.jsp"%>
 </body>
