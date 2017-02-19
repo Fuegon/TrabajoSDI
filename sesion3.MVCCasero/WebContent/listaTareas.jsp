@@ -13,6 +13,7 @@
 </head>
 <body>
 	<a name ="inbox_link" href ="inbox">Inbox</a>
+	<a name ="inbox_terminadas_link" href ="inbox_terminada">Inbox Terminadas</a>
 	<a name ="hoy_link" href ="hoy">Hoy</a>
 	<a name ="semana_link" href ="semana">Semana</a>
 	<a name ="todas_link" href ="tareas">Todas</a>
@@ -27,16 +28,7 @@
 						name="newCategory" size="15"></label> 
 		<input type="submit" value="Añadir">
 	</form>
-	
-	<form action="filtroTerminadas" method ="POST">
-		<label>
-			<input type="checkbox" name="filtroTerminadas"
-			value ="activado">
-			Mostrar terminadas
-		</label>
-	</form>
-	
-	
+		
 	<br/>
 	<table>
 	<tr>
@@ -65,11 +57,13 @@
 				<tr><th colspan="2">Categorias</th></tr>
 				<tr>
 					<th>ID</th>
+					<th>Terminadas</th>
 					<th>Nombre</th>
 				</tr>
 			<c:forEach var="entry" items="${listaCategory}" varStatus="i">
 				<tr id="item_${i.index}">
 					<td><a href="tareaCategoria?id=${entry.id}">${entry.id}</a></td>
+					<td><a href="tareaCategoriaTerminada?id=${entry.id}">${entry.id}</a></td>
 					<td>${entry.name}</td>
 					<td><a href="duplicarCategoria?Id=${entry.id}">Duplicar</a></td>
 					<td><a href="modificarCategoria?Id=${entry.id}">Modificar</a></td>

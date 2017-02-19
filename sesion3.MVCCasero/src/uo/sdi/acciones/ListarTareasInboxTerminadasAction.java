@@ -13,7 +13,7 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class ListarTareasInboxAction implements Accion {
+public class ListarTareasInboxTerminadasAction implements Accion {
 	
 	@Override
 	public String execute(HttpServletRequest request,
@@ -28,6 +28,7 @@ public class ListarTareasInboxAction implements Accion {
 			TaskService taskService = Services.getTaskService();
 			synchronized(request.getServletContext())  {
 				listaTasks = taskService.findInboxTasksByUserId(user.getId());
+				listaTasks.addAll(taskService.findFinishedInboxTasksByUserId(user.getId()));
 			}
 			request.setAttribute("listaTasks", listaTasks);
 			request.setAttribute("titulo", "Tareas del inbox");
