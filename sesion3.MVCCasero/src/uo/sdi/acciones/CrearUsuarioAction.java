@@ -42,6 +42,7 @@ public class CrearUsuarioAction implements Accion {
 			synchronized(request.getServletContext())  {
 				userService.registerUser(user);
 			}
+			request.setAttribute("mensajeParaElUsuario", "Cuenta " + usuario + " creada con exito");
 			session.invalidate();
 		}
 		catch (BusinessException b) {

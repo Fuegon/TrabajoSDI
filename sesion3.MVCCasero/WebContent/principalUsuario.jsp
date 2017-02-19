@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td>Datos:</td>
-			<td id="datos"><form action="modificarDatos" method="POST">
+			<td id="datos"><form id="modificarDatos" action="modificarDatos" method="POST">
 					<label>Email: <input type="text" name="email" size="15"
 						value="<jsp:getProperty property="email" name="user"/>"></label> <label>Nueva
 						contraseña: <input type="password" name="newPass" size="15">

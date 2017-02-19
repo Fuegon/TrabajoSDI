@@ -48,6 +48,8 @@ public class ModificarDatosAction implements Accion {
 			UserService userService = Services.getUserService();
 			userService.updateUserDetails(userClone);
 			session.setAttribute("user",userClone);
+			
+			request.setAttribute("mensajeParaElUsuario", "Datos modificados correctamente");
 		}
 		catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido actualizando los datos de [%s]: %s", 
@@ -61,10 +63,10 @@ public class ModificarDatosAction implements Accion {
 	private void canChangePassword(String newPass, String newPassAgain,
 			String oldPass, User userClone) throws BusinessException {
 		String msg = "No se puede cambiar la contraseña: ";
-		if(userClone.checkPassword(oldPass)){
+		if(!userClone.checkPassword(oldPass)){
 			throw new BusinessException(msg + "La contraseña no es correcta.");
 		}
-		if(newPass.equals(newPassAgain) ){
+		if(!newPass.equals(newPassAgain) ){
 			throw new BusinessException(msg + "Las contraseñas no coinciden.");
 		}
 	}
