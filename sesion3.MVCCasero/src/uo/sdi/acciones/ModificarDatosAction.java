@@ -37,13 +37,13 @@ public class ModificarDatosAction implements Accion {
 			userClone.setEmail(nuevoEmail);
 			Log.debug("Modificado email de [%s] con el valor [%s]", 
 					userClone.getLogin(), nuevoEmail);
-			
-			//Contraseña
-			canChangePassword(newPass, newPassAgain, oldPass, userClone);
-			userClone.setAndHashPassword(newPass);
-			Log.debug("Modificada contraseña de [%s]", 
-					userClone.getLogin());
-			
+			if(!(newPass.isEmpty() && newPassAgain.isEmpty())){
+				//Contraseña
+				canChangePassword(newPass, newPassAgain, oldPass, userClone);
+				userClone.setAndHashPassword(newPass);
+				Log.debug("Modificada contraseña de [%s]", 
+						userClone.getLogin());
+			}
 			//Guardar
 			UserService userService = Services.getUserService();
 			userService.updateUserDetails(userClone);

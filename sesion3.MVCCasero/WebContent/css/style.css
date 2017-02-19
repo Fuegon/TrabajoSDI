@@ -1,0 +1,20 @@
+body{
+  font-family: sans-serif;
+}
+
+.button {
+    background-color: #bbb;
+    color: black;
+    padding: 7px 20px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.confirm {background-color: #4caf50;}
+.danger {background-color: #f44336;} 
+.warning {background-color: #ffc107;}

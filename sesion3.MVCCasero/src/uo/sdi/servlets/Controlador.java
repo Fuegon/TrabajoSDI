@@ -160,7 +160,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaAdmin.put("adminUsers", new AdministrarUsuariosAction());
 		mapaAdmin.put("enableUser", new HabilitarUsuarioAction());
 		mapaAdmin.put("disableUser", new DeshabilitarUsuarioAction());
-		mapaAdmin.put("deleteUser", new BorrarUsuarioAction());
+		mapaAdmin.put("deleteUser", new TryBorrarUsuarioAction());
+		mapaAdmin.put("deleteUserConfirm", new BorrarUsuarioAction());
 		mapaAdmin.put("cerrarSesion", new CerrarSesionAction());
 		mapaDeAcciones.put("ADMIN", mapaAdmin);
 	}
@@ -348,12 +349,18 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO", "/adminUsers");
 		opcionResultadoYJSP.put("disableUser", resultadoYJSP);
 
-		// Borrar usuarios
+		// Try borrar usuarios
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/eliminarUsuario.jsp");
+		resultadoYJSP.put("FRACASO", "/adminUsers");
+		opcionResultadoYJSP.put("deleteUser", resultadoYJSP);
+		
+		//Borrar usuario
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/adminUsers");
 		resultadoYJSP.put("FRACASO", "/adminUsers");
-		opcionResultadoYJSP.put("deleteUser", resultadoYJSP);
-
+		opcionResultadoYJSP.put("deleteUserConfirm", resultadoYJSP);
+		
 		mapaDeNavegacion.put("ADMIN", opcionResultadoYJSP);
 	}
 
