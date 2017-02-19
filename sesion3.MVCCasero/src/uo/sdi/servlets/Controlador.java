@@ -152,6 +152,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("modificar2Categoria", new ModificarCategoriaAction());
 		mapaRegistrado.put("eliminarCategoria", new ObtenerCategoria2Action());
 		mapaRegistrado.put("eliminar2Categoria", new EliminarCategoriaAction());
+		//mapaRegistrado.put("filtroTerminadas", new ListarTareasInboxAction());
 
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
@@ -267,57 +268,57 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
 		opcionResultadoYJSP.put("modificarTarea2", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Eliminar tarea
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("eliminarTarea", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
 		// Finalizar tarea 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("finalizarTarea", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Duplicar categoria 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("duplicarCategoria", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Obtener categoria 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/modificarCategoria.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("modificarCategoria", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Modificar categoria 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("modificar2Categoria", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
 		// Obtener categoria 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/eliminarCategoria.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("eliminarCategoria", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 				
 		// Modificar categoria 
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("eliminar2Categoria", resultadoYJSP);
-		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 		
+		// Mostrar de tareas hoy
+		/*resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("filtroTerminadas", resultadoYJSP);*/
+		
+		
+		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
+
 		// Mapa de navegación del ADMINISTRADOR
 		// Validarse
 		resultadoYJSP = new HashMap<String, String>();
@@ -353,7 +354,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/adminUsers");
 		resultadoYJSP.put("FRACASO", "/adminUsers");
 		opcionResultadoYJSP.put("deleteUser", resultadoYJSP);
-
+		
+		
 		mapaDeNavegacion.put("ADMIN", opcionResultadoYJSP);
 	}
 

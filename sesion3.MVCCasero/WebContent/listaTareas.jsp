@@ -27,6 +27,16 @@
 						name="newCategory" size="15"></label> 
 		<input type="submit" value="Añadir">
 	</form>
+	
+	<form action="filtroTerminadas" method ="POST">
+		<label>
+			<input type="checkbox" name="filtroTerminadas"
+			value ="activado">
+			Mostrar terminadas
+		</label>
+	</form>
+	
+	
 	<br/>
 	<table>
 	<tr>
