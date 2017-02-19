@@ -8,11 +8,12 @@
 <%@ include file="styles.jsp"%>
 </head>
 <body>
-	<a name="inbox_link" href="inbox">Inbox</a>
-	<a name="hoy_link" href="hoy">Hoy</a>
-	<a name="semana_link" href="semana">Semana</a>
-	<a name="todas_link" href="tareas">Todas</a>
-	<br />
+	<a name ="inbox_link" href ="inbox">Inbox</a>
+	<a name ="inbox_terminadas_link" href ="inbox_terminada">Inbox Terminadas</a>
+	<a name ="hoy_link" href ="hoy">Hoy</a>
+	<a name ="semana_link" href ="semana">Semana</a>
+	<a name ="todas_link" href ="tareas">Todas</a>
+	<br/>
 	<form action="newTarea" method="POST">
 		<label>Añadir tarea: <input type="text" name="newTarea"
 			size="15"></label> <input class="button" type="submit" value="Añadir">
@@ -21,15 +22,8 @@
 		<label>Añadir categoria: <input type="text" name="newCategory"
 			size="15"></label> <input class="button" type="submit" value="Añadir">
 	</form>
-
-	<form id="terminadas" action="inbox" method="POST">
-		<label> <input type="checkbox" name="filtroTerminadas"
-			value="activado"> Mostrar terminadas
-		</label>
-	</form>
-
-
-	<br />
+		
+	<br/>
 	<table>
 		<tr>
 			<td><table border="1" align="center">

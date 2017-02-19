@@ -64,7 +64,6 @@ public class Sesion3Tests {
     	usuario1.clickLink("mostrarLista_lin_id");
     	usuario1.setTextField("newTarea", "Cosa nueva");
     	usuario1.assertTextPresent("Cosa nueva");
-    	usuario1.clickLinkWithExactText("Eliminar");   
-
     }
+    
 }

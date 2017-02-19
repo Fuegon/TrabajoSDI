@@ -151,8 +151,10 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("modificar2Categoria", new ModificarCategoriaAction());
 		mapaRegistrado.put("eliminarCategoria", new ObtenerCategoria2Action());
 		mapaRegistrado.put("eliminar2Categoria", new EliminarCategoriaAction());
-		//mapaRegistrado.put("filtroTerminadas", new ListarTareasInboxAction());
+		mapaRegistrado.put("inbox_terminada", new ListarTareasInboxTerminadasAction());
+		mapaRegistrado.put("tareaCategoriaTerminada", new ListarTareasTerminadasCategoriaAction());
 
+		
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 
 		Map<String, Accion> mapaAdmin = new HashMap<String, Accion>();
@@ -305,11 +307,15 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO", "/listaTareas.jsp");
 		opcionResultadoYJSP.put("eliminar2Categoria", resultadoYJSP);
 		
-		// Mostrar de tareas hoy
-		/*resultadoYJSP = new HashMap<String, String>();
+		// Mostrar de tareas inbox terminadas
+		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
-		opcionResultadoYJSP.put("filtroTerminadas", resultadoYJSP);*/
+		opcionResultadoYJSP.put("inbox_terminada", resultadoYJSP);
 		
+		// Mostrar de categoria
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listaTareas.jsp");
+		opcionResultadoYJSP.put("tareaCategoriaTerminada", resultadoYJSP);
 		
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
